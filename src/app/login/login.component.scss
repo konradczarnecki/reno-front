@@ -1,0 +1,36 @@
+@import '../common';
+
+#wrapper {
+  @include size100p;
+  position: relative;
+}
+
+#baseView {
+  @include size(65%, 160px);
+  @include absolute-center;
+
+  div {
+    @include size(100%, 70px);
+    @include mdc-elevation(2);
+    @include grid-center;
+    margin-bottom: 10px;
+    background: $main-clr;
+
+    &:hover {
+      cursor: pointer;
+      background: darken($main-clr, 8);
+    }
+
+    &:active {
+      @include mdc-elevation(0);
+    }
+  }
+
+  input {
+    visibility: hidden;
+  }
+}
+
+.fullFrame {
+  @include size100p;
+}

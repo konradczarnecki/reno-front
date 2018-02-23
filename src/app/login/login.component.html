@@ -1,0 +1,19 @@
+<div id="wrapper">
+
+  <div id="baseView" *ngIf="state == 'base'">
+
+    <div id="loginButton" (click)="clickLogin()">Login</div>
+    <div id="createAccountButton">Create account</div>
+    <input type="file" #fileInput/>
+
+  </div>
+
+  <div class="fullFrame" id="login" *ngIf="state == 'login'">
+
+  </div>
+
+  <div class="fullFrame" id="register" *ngIf="state == 'register'">
+
+  </div>
+
+</div>
