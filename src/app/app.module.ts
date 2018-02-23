@@ -11,6 +11,7 @@ import { MineComponent } from './mine/mine.component';
 import { ExploreComponent } from './explore/explore.component';
 import { AccountService } from './service/account.service';
 import { FetchService } from './service/fetch.service';
+import {HttpClientModule} from '@angular/common/http';
 
 export const routes: Routes = [
   { path : '', component : LoginComponent, pathMatch : 'full' },
@@ -32,7 +33,8 @@ export const routes: Routes = [
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    HttpClientModule
   ],
   providers: [AccountService, FetchService],
   bootstrap: [AppComponent]

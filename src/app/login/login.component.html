@@ -2,13 +2,16 @@
 
   <div id="baseView" *ngIf="state == 'base'">
 
-    <div id="loginButton" (click)="clickLogin()">Login</div>
-    <div id="createAccountButton">Create account</div>
+    <div class="button" id="loginButton" (click)="clickLogin()">Login</div>
+    <div class="button" id="createAccountButton">Create account</div>
     <input type="file" #fileInput/>
 
   </div>
 
-  <div class="fullFrame" id="login" *ngIf="state == 'login'">
+  <div id="login" *ngIf="state == 'login'">
+
+    <input type="password" placeholder="Password"/>
+    <div class="button" id="submitButton">Submit</div>
 
   </div>
 

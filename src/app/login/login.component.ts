@@ -1,22 +1,28 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {FileChangeEvent} from '@angular/compiler-cli/src/perform_watch';
+import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {AccountService} from '../service/account.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, AfterViewInit {
 
   @ViewChild('fileInput') fileInput: ElementRef;
 
   state: string;
 
-  constructor() {
+  constructor(private accountService: AccountService) {
+
     this.state = 'base';
   }
 
   ngOnInit() {
+  }
+
+  ngAfterViewInit() {
+
+    this.fileInput.nativeElement.addEventListener('change', this.readFile.bind(this), false);
   }
 
   clickLogin() {
@@ -30,12 +36,20 @@ export class LoginComponent implements OnInit {
     if (!file) return;
 
     let reader = new FileReader();
-
-    reader.onload = function(e) {
-      // let contents = e.target.result;
-      // displayContents(contents);
-    };
+    reader.onload = this.readerOnLoad.bind(this);
     reader.readAsText(file);
+  }
+
+  verifyKeyfile(fileContent: string): boolean {
+
+    return true;
+  }
+
+  readerOnLoad(e: any) {
+
+    let content = e.target.result;
+    if(this.verifyKeyfile(content)) this.accountService.keyfileContent = content;
+    this.state = 'login';
   }
 
 }

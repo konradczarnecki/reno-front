@@ -5,6 +5,8 @@ import {environment} from '../../environments/environment';
 @Injectable()
 export class AccountService {
 
+  keyfileContent: string;
+
   constructor(private http: HttpClient) { }
 
   createAccount() {
